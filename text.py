@@ -31,3 +31,7 @@ The cloacked man vanish behind the trees and you no longer hear his footsteps on
 
 FAIRY_RING = """After a fair bit of trekkig in the same direction the man was last seen going, you come upon an opening in the forrest.
 In the middle of the huge opening in the dark wood there is a largest ring of mushrooms you have ever seen."""
+
+BEAR_ATTACK = "Bear attacks you cus you lie lol"
+BEAR_FRIENDLY = "a Bear shakes your hand because you were a real gentleman and don't tell any lies"
+BEAR_NORMAL = "You catch a glimpse of a huge brown bear as it stubles in to the depths of the forrest"
