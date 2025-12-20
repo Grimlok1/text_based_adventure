@@ -1,37 +1,29 @@
-FOOTSTEPS = """You Find yourself in a dark gloomy forest. You have no memory of why and how you ended up here, nor the slightest idea where you are.
-As you are wondering why you ended up in this rather murky environment, you suddenly hear faint footfalls in the distance. Someone is clearly coming your way"""
+START = """You wake up lying on a circular opening in a murky dark forest. Long menacing spruce trees stand tall like pillars of the sky.
+The forest around you has an ancient and eerie aura. You get a sense the surrounding trees are watching you intently as you stand up and dust yourself off.
+A lonely crow flies past your head. 
 
-HIDE = """You shelter behind the nearest tree not wanting to be seen by the approaching figure.
-It doens\'t take long untill a clocked figure of an old man emerges from the brush, murmuring somthing to himself.
-The hooded man doens\'t see you as he treks past."""
+Looking around, you notice a collection of natural boulders, old and weather as they appear.
+The ancient stones form a circle around where you are standing. On the mossy ground lies two items of interest.
+And empty flask and an amulet of iron made in the likeness of a sitting bear.
+You decide to take these items and head from the safety of the small opening into the world of darkness that awaits you under the shadows of those ancient green wardens. 
+"""
 
-FOLLOW = """You beging to follow the man from safe distance away.
-After a while however the man disappears behind a particularly thick cluseter of trees.
-You hurry to get him into your sights again but he is nowhere to be found.
-Only the distant calls of birds can be heard in the forrest anymore."""
+TRUTH = """You wander aimlessly amidst the giant trees for what feels like an eternity.
+Then suddenly out of the corner of your eye, you spot the crow from before, gliding past you to sit on a nearby branch.
+It cocks its head and looks at you with a piercing gaze, stopping you in your tracks. You feel a powerful inner pull and urge to follow it. 
+The crow flutters from branch to branch leading you deeper into the heart of the forest, before finally disappearing mysteriously into the fog.
+Looking around for it, you find instead a warm, soft, cozy light seeping through the treebranches, inviting you to approach. 
+Coming closer you notice a small cabin nearby and a man sitting on the porch, busy at work. The man looks up at you with smiling eyes.
+He tells you he is a hunter who is on his way to check on a few traps that he set. He invites you to join him for a meal and allows you to stay the night in his cabin, if you so choose.
+Before the man leaves he tells you there's stew in the pot waiting for you.
+He begins to part again, then abruptly turns “Oh, I almost forgot! I lost an old iron necklace in the woods a couple of days ago. Perhaps you have seen it?”
+"""
 
-WAIT = """You wait as the footsteps draw nearer.
-Not soon after a cloacked figure of an old man appears out of the brush.
-He almost doesn\'t see you as he seems to be lost in his own toughts muttering something.
-The man looks suprised to see you an ask what and how you ended up there"""
+TELL_TRUTH = """You show him the amulet you found laying on the ground near where you awoke a couple of hour ago. He takes the amulet from you and examines it keenly.
+Then he turn his head towards you with a faint smile on his lips. \"it is indeed my amulet there is no doubt about that, but perhaps it was not mere chance that you should happen upon it.
+i think you ought to keep it. it has kept me safe all these years and perhaps it provides the same service for your sake. Take it i insist!\" he presses the amulet firmly in your hand.
+"""
 
-TRUTH = """You tell the man the truth. His eyes suddley light up in understaing and he smiles.
-The old man takes something from his pocket and presses it to your palm.
-\"This might help you in your journey\". You look at the object in your palm.
-it\'s a small coinlike token with picture of an oaks leaf on it. 
-You look up from the object, the man has disappeared witouth you noticing.
-Only the distant cries of bird can be heard in the forrest anymore."""
-
-LIE = """You tell the man you are mearly a woodsman looking to forage few mushrooms for you and your familiy.
-The man looks puzzled, clearly doubting the validity of your words. after a while the man ask whether you have been complealty truthful with him?"""
-
-LIE2 = """You tell the man everything you said was true.
-The man looks dissapointed and says \"If that is true then you need not my aid, farewell\"
-The cloacked man vanish behind the trees and you no longer hear his footsteps only the chirping of birds"""
-
-FAIRY_RING = """After a fair bit of trekkig in the same direction the man was last seen going, you come upon an opening in the forrest.
-In the middle of the huge opening in the dark wood there is a largest ring of mushrooms you have ever seen."""
-
-BEAR_ATTACK = "Bear attacks you cus you lie lol"
-BEAR_FRIENDLY = "a Bear shakes your hand because you were a real gentleman and don't tell any lies"
-BEAR_NORMAL = "You catch a glimpse of a huge brown bear as it stubles in to the depths of the forrest"
+TELL_LIE = """\"OH well... it was worth the try. Perhaps i\'ll stumble upon it at a later date\" the man looks visibly dissapointed.
+You feel a spike in your heart.    
+"""
