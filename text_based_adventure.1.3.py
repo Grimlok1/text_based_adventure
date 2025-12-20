@@ -1,22 +1,23 @@
-from story import start, game
+from story import start
+from scene import Game
 
 def main():
     main_menu()
 
 def game_loop():
-    event = start
+    game = Game(start) #onko mahdollista importoida suoraan game object jolloin ei tarvitse antaa sitä functioille.
+    
     while True:
-        event.event_description()
+        handle_event(game)
         
         if event.options:
-            event = ask_choice(event)
-            
-        #automatic transition    
+            game.current_event = ask_choice(event)
         else:
-            event = event.next_event
+            game.current_event = event.next_event
+        
     
-def ask_choice(event):
-    options = event.get_options(game.flags)
+def ask_choice(game):
+    options = game.current_event.get_options(game.flags)
     
     for i, option in enumerate(options, start=1):
         print(f"\n{i}. {option.description}\n")
@@ -30,7 +31,15 @@ def ask_choice(event):
                 print("invalid input")
         except ValueError:
             print("invalid value type")
-                
+
+def handle_event(game):
+    game.current_event = event
+    print(event.description)
+    game.flags.update(event.flags)
+    for treasure in event.treasure:
+        print(f"{treasure.name} added to inventory")
+        game.inventory.append(treasure)
+        
 def main_menu():
     print("Welcome placeholder\n")
     while True:

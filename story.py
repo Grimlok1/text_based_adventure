@@ -1,12 +1,11 @@
-from scene import Event, Game
+from scene import Event
 import text
 #events
-game = Game()
 
-start = Event(game, text.START)
-truth = Event(game, text.TRUTH)
-tell_truth = Event(game, text.TELL_TRUTH)
-tell_lie = Event(game, text.TELL_LIE)
+start = Event(text.START)
+truth = Event(text.TRUTH)
+tell_truth = Event(text.TELL_TRUTH)
+tell_lie = Event(text.TELL_LIE)
 
 start.add_next_event(truth)
 start.add_treasure("flask", "Old iron flask")
