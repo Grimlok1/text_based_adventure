@@ -1,43 +1,41 @@
-from story import start
-from scene import Game
+from story import game
 
 def main():
     main_menu()
 
 def game_loop():
-    game = Game(start) #onko mahdollista importoida suoraan game object jolloin ei tarvitse antaa sitä functioille.
-    
     while True:
-        handle_event(game)
-        
-        if event.options:
-            game.current_event = ask_choice(event)
-        else:
-            game.current_event = event.next_event
-        
-    
-def ask_choice(game):
-    options = game.current_event.get_options(game.flags)
-    
-    for i, option in enumerate(options, start=1):
-        print(f"\n{i}. {option.description}\n")
-        
-    while True:    
-        try:
-            choice = int(input("> ")) - 1
-            if 0 <= choice < len(options):
-                return options[choice].next_event
-            else:
-                print("invalid input")
-        except ValueError:
-            print("invalid value type")
+        event = game.current_event
 
-def handle_event(game):
-    game.current_event = event
+        describe_event()
+        if event.options:
+            game.current_event = ask_input()
+        else:
+            print("Game over")
+            break
+
+            
+def ask_input():
+    while True:
+        options = game.current_event.get_options(game.flags)
+        
+        for key, option in options.items():
+            print(f"{key}. {option.description}\n")
+        choice = input("> ")
+        if choice in options.keys():
+            return options[choice].next_event
+        else:
+            print("invalid input")
+
+def describe_event():
+    event = game.current_event
     print(event.description)
-    game.flags.update(event.flags)
+
+    if event.flag:
+        game.flags.add(event.flag)
+
     for treasure in event.treasure:
-        print(f"{treasure.name} added to inventory")
+        print(f"{treasure.name} added to inventory\n")
         game.inventory.append(treasure)
         
 def main_menu():

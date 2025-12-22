@@ -8,7 +8,7 @@ And empty flask and an amulet of iron made in the likeness of a sitting bear.
 You decide to take these items and head from the safety of the small opening into the world of darkness that awaits you under the shadows of those ancient green wardens. 
 """
 
-TRUTH = """You wander aimlessly amidst the giant trees for what feels like an eternity.
+HUNTER = """You wander aimlessly amidst the giant trees for what feels like an eternity.
 Then suddenly out of the corner of your eye, you spot the crow from before, gliding past you to sit on a nearby branch.
 It cocks its head and looks at you with a piercing gaze, stopping you in your tracks. You feel a powerful inner pull and urge to follow it. 
 The crow flutters from branch to branch leading you deeper into the heart of the forest, before finally disappearing mysteriously into the fog.
