@@ -5,6 +5,7 @@ class Event:
         self.options = []
         self.treasure = []
         self.flag = flag
+        self.visited = False
         
     def add_next_event(self, next_event):
         self.options.append(self.Option("Continue", next_event))
@@ -14,14 +15,19 @@ class Event:
         
     def add_treasure(self, name, description):
         self.treasure.append(self.Treasure(name, description))
-        
+
+    def get_treasure(self):
+        if not self.visited:
+            self.visited = True
+            return self.treasure
+
     def get_options(self, flags):
         available_options = {}
         i = 1
         for option in self.options:
             if option.required_flags.issubset(flags):
-                available_options.update({f"{i}" : option})
-            i = i + 1
+                available_options[str(i)] = option
+                i = i + 1
         return available_options
 
         
@@ -37,7 +43,8 @@ class Event:
             self.description = description
             
 class Game:
-    def __init__(self, current_event):
+    def __init__(self, story):
+        self.story = story
         self.flags = set()
         self.inventory = []
-        self.current_event = current_event
+        self.current_event = None

@@ -1,31 +1,105 @@
-from story import game
+from story import game, start
+from ui import error, success
+import os
+
+
 
 def main():
-    main_menu()
+    error_message = ""
+    while True:
+        choice = main_menu(error_message)
+        if choice == "1":
+            game_loop()
+            error_message = ""
+
+        elif choice == "2":
+            quit_game()
+
+        else:
+            error_message = "Invalid input!"
 
 def game_loop():
-    while True:
-        event = game.current_event
+    commands = dict(bag = open_inventory, b = open_inventory, quit = quit_game)
+    new_game()
 
+    while True:
+        clear_screen()
         describe_event()
-        if event.options:
-            game.current_event = ask_input()
-        else:
+        display_options()
+
+        if not game.current_event.options:
             print("Game over")
             break
 
-            
-def ask_input():
-    while True:
-        options = game.current_event.get_options(game.flags)
-        
-        for key, option in options.items():
+        ask_input(commands)
+
+def new_game():
+    game.current_event = start
+    game.flags = set()
+    game.inventory = []
+    for event in game.story:
+        event.visited = False
+
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
+
+def display_options():
+    if game.current_event.options:
+        for key, option in game.current_event.get_options(game.flags).items():
             print(f"{key}. {option.description}\n")
+
+def ask_input(commands):
+    options = game.current_event.get_options(game.flags)
+    while True:
         choice = input("> ")
+
         if choice in options.keys():
-            return options[choice].next_event
+            game.current_event = options[choice].next_event
+            return
+
+        elif choice in commands:
+            commands[choice]()
+            return
+
         else:
-            print("invalid input")
+            clear_screen()
+            describe_event()
+            display_options()
+            error("Invalid input!\n")
+
+def open_inventory():
+    clear_screen()
+    inventory = display_inventory()
+
+    while True:
+        choice = input("> ")
+
+        if choice in inventory.keys():
+            clear_screen()
+            display_inventory()
+            print(f"> {inventory[choice].name}: {inventory[choice].description}\n")
+
+        elif choice == f"{len(inventory) + 1}":
+            clear_screen()
+            break
+
+        else:
+            clear_screen()
+            display_inventory()
+            error("Invalid input!\n")
+
+def quit_game():
+    quit()
+
+def display_inventory():
+    inventory = {str(key) : item for (key, item) in enumerate(game.inventory, start=1)}
+    print("Backpack items:")
+
+    for key, item in inventory.items():
+        print(f"{key}. {item.name}")
+    print(f"{len(inventory) + 1}. close bag")
+
+    return inventory
 
 def describe_event():
     event = game.current_event
@@ -35,19 +109,21 @@ def describe_event():
         game.flags.add(event.flag)
 
     for treasure in event.treasure:
-        print(f"{treasure.name} added to inventory\n")
-        game.inventory.append(treasure)
-        
-def main_menu():
+        success(f"{treasure.name} added to inventory\n")
+
+    if not event.visited:
+        game.inventory.extend(event.treasure)
+        event.visited = True
+      
+def main_menu(error_message):
+    clear_screen() 
     print("Welcome placeholder\n")
-    while True:
-        choice = verify_input("1. Start game\n2. Quit game\n", ("1", "2"))
-        if choice == "1":
-            game_loop()
-        elif choice == "2": #quit game
-            break
+    print("1. Start game\n2. Quit game\n")
+    error(error_message)
+
+    return input("> ")
+
             
-    
 def verify_input(promt, valid_options, fail_promt = "invalid input"):
     while True:
         user_choice = input(promt).strip().lower()
