@@ -24,6 +24,15 @@ Then he turn his head towards you with a faint smile on his lips. \"it is indeed
 i think you ought to keep it. it has kept me safe all these years and perhaps it provides the same service for your sake. Take it i insist!\" he presses the amulet firmly in your hand.
 """
 
-TELL_LIE = """\"OH well... it was worth the try. Perhaps i\'ll stumble upon it at a later date\" the man looks visibly dissapointed.
-You feel a spike in your heart.    
+TELL_LIE = """\"OH well... it was worth the try. Perhaps i\'ll stumble upon it at a later date.\"
+The man looks visibly dissapointed. You feel a sting on guilt in your heart.    
+"""
+
+INVITE = """Oh... well you must be hungry come inside we can talk more over some delicious stew. The man motions you to follow as he enters the rustic old wood cabin.
+\"Please take a seat, i'll fix us some stew.\" He takes two bowl of meat stew from the large pot that is simmering above a fireplace and places them on the table.
+\"Please help yourself for some stew.\"
+"""
+TALE = """The man takes a seat in front of you and looks up at you. \"So, you probably wonder where you are? This here forest is known as the Darkwood largest forest in the kingdom.
+It's probably two to three days of travel west before you come upon a nearest village. People don't like to settle too close to it, They say the forest is cursed.
+Village folks talk that Druids inhabit these woods. I haven't seen any of the sort since i moved here, plenty of animals to hunt and a boat load of piece and quiet on the other hand.\"
 """

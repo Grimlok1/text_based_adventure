@@ -1,12 +1,21 @@
 class Event:
     #lisää myöhemmin mahdollisuus lisätä monta kuvausta... ehkä
-    def __init__(self, description, flag=None):
+    def __init__(self, description, required_flags=None, flag=None):
         self.description = description
         self.options = []
         self.treasure = []
         self.flag = flag
+        self.required_flags = set(required_flags or [])
         self.visited = False
-        
+
+    def resolve(self, game):
+        if self.flag:
+            game.flags.add(self.flag)
+
+        if not self.visited:
+            game.inventory.extend(self.treasure)
+            self.visited = True
+
     def add_next_event(self, next_event):
         self.options.append(self.Option("Continue", next_event))
         
@@ -30,13 +39,22 @@ class Event:
                 i = i + 1
         return available_options
 
-        
     class Option:
-        def __init__(self, description, next_event, required_flags=None):
+        def __init__(self, description, def_event, alt_events=None, required_flags=None):
             self.description = description
-            self.next_event = next_event
+            self.def_event = def_event
+            self.alt_events = alt_events or []
+
             self.required_flags = set(required_flags or [])
-            
+
+        def get_next_event(self, flags):
+            next_event = self.def_event
+            for event in self.alt_events:
+                if event.required_flags.issubset(flags):
+                    next_event = event
+                    break
+            return next_event
+
     class Treasure:
         def __init__(self, name, description):
             self.name = name
