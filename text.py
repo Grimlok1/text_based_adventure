@@ -19,15 +19,20 @@ Before the man leaves he tells you there's stew in the pot waiting for you.
 He begins to part again, then abruptly turns “Oh, I almost forgot! I lost an old iron necklace in the woods a couple of days ago. Perhaps you have seen it?”
 """
 
-TELL_TRUTH = """You show him the amulet you found laying on the ground near where you awoke a couple of hour ago. He takes the amulet from you and examines it keenly.
+SHOW_AMULET = """You show him the amulet you found laying on the ground near where you awoke a couple of hour ago. He takes the amulet from you and examines it keenly.
 Then he turn his head towards you with a faint smile on his lips. \"it is indeed my amulet there is no doubt about that, but perhaps it was not mere chance that you should happen upon it.
 i think you ought to keep it. it has kept me safe all these years and perhaps it provides the same service for your sake. Take it i insist!\" he presses the amulet firmly in your hand.
 """
 
-TELL_LIE = """\"OH well... it was worth the try. Perhaps i\'ll stumble upon it at a later date.\"
-The man looks visibly dissapointed. You feel a sting on guilt in your heart.    
+ASK_AGAIN = """Are you sure you haven't seen my amulet? It is quite heavy iron amulet shaped in the likeness of a sitting bear,
+quite easily recognizable. It has sentimental value to me. I like to think it has kept me safe all these years. i'd very much hate to lose it?   
 """
+KEEP_AMULET = """Oh well... Perhaps i\'ll stumble upon it at a later day if luck is on my side. Sigh*
+"""
+SHOW_AMULET_2 = """It is my amulet thats for sure. You hesitated in giving it a stranger but still decided to do so. Thank you.
+Perhaps you should keep it instead. It has served me well and perhaps it shall provide the same service for your sake. The hunter presses the amulet in your hand.
 
+"""
 INVITE = """Oh... well you must be hungry come inside we can talk more over some delicious stew. The man motions you to follow as he enters the rustic old wood cabin.
 \"Please take a seat, i'll fix us some stew.\" He takes two bowl of meat stew from the large pot that is simmering above a fireplace and places them on the table.
 \"Please help yourself for some stew.\"
@@ -35,4 +40,8 @@ INVITE = """Oh... well you must be hungry come inside we can talk more over some
 TALE = """The man takes a seat in front of you and looks up at you. \"So, you probably wonder where you are? This here forest is known as the Darkwood largest forest in the kingdom.
 It's probably two to three days of travel west before you come upon a nearest village. People don't like to settle too close to it, They say the forest is cursed.
 Village folks talk that Druids inhabit these woods. I haven't seen any of the sort since i moved here, plenty of animals to hunt and a boat load of piece and quiet on the other hand.\"
+"""
+
+DINNER = """After dining with him them man gets up and informs you that he will be gone for a few days. He tells you he's going to check on a few traps he set a while ago.
+Before he leaves the man informs you that you should maybe head west.
 """

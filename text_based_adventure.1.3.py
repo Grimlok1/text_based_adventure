@@ -1,5 +1,5 @@
-from story import game, start
-from ui import error, success
+from story import game
+from ui import error, success, info
 import os
 
 
@@ -53,16 +53,19 @@ def game_over():
         clear_screen()
         print(game.current_event.description)
         error("Game over!")
-        print("1. return to main menu")
+
+        print("1. Return to main menu\n2. Quit game" )
         i = input("> ")
         if i == "1":
             return
+        elif i == "2":
+            quit()
 
 def new_game():
-    game.current_event = start
+    game.current_event = game.events["start"]
     game.flags = set()
     game.inventory = []
-    for event in game.story:
+    for event in game.events.values():
         event.visited = False
 
 def clear_screen():
@@ -71,7 +74,7 @@ def clear_screen():
 def render_options():
     if game.current_event.options:
         for key, option in game.current_event.get_options(game.flags).items():
-            print(f"{key}. {option.description}\n")
+            print(f"{key}. {option.description}")
 
 def ask_input(commands):
     options = game.current_event.get_options(game.flags)
@@ -88,37 +91,47 @@ def ask_input(commands):
 
 def inventory_menu():
     message = ""
+    msg_type = "default"
     while True:
         clear_screen()
-        inventory = display_inventory(message)
+        inventory = render_inventory()
+
+        if msg_type == "error":
+            error(message)
+        else:
+            info(message)
+
         choice = input("> ")
 
         if choice in inventory.keys():
             message = f"{inventory[choice].name}: {inventory[choice].description}"
+            msg_type = "default"
 
         elif choice == f"{len(inventory) + 1}":
             return
 
         else:
             message = "Invalid input!"
+            msg_type = "error"
 
 def quit_game():
     quit()
 
-def display_inventory(message):
+def render_inventory():
     inventory = {str(key) : item for (key, item) in enumerate(game.inventory, start=1)}
     print("Backpack items:")
 
     for key, item in inventory.items():
         print(f"{key}. {item.name}")
-    print(f"{len(inventory) + 1}. close bag")
-    print(f"\n{message}")
 
+    print(f"{len(inventory) + 1}. close bag")
     return inventory
 
 def render_event():
     event = game.current_event
     print(event.description)
+    for treasure in event.treasure:
+        success(f"{treasure.name} added to inventory")
     event.resolve(game)
       
 def main_menu(error_message):

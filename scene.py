@@ -61,8 +61,13 @@ class Event:
             self.description = description
             
 class Game:
-    def __init__(self, story):
-        self.story = story
+    def __init__(self):
         self.flags = set()
         self.inventory = []
+        self.events = {}
         self.current_event = None
+
+    def create_event(self,name, description, required_flags=None, flag=None):
+        event = Event(description, required_flags, flag)
+        self.events[name] = event
+        return event
