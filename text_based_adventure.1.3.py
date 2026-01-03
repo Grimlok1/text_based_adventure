@@ -64,7 +64,7 @@ def game_over():
 def new_game():
     game.current_event = game.events["start"]
     game.flags = set()
-    game.inventory = []
+    game.inventory.clear()
     for event in game.events.values():
         event.visited = False
 
@@ -94,7 +94,7 @@ def inventory_menu():
     msg_type = "default"
     while True:
         clear_screen()
-        inventory = render_inventory()
+        render_inventory()
 
         if msg_type == "error":
             error(message)
@@ -103,11 +103,11 @@ def inventory_menu():
 
         choice = input("> ")
 
-        if choice in inventory.keys():
-            message = f"{inventory[choice].name}: {inventory[choice].description}"
+        if choice in game.inventory.keys():
+            message = f"{game.inventory[choice].name}: {game.inventory[choice].description}"
             msg_type = "default"
 
-        elif choice == f"{len(inventory) + 1}":
+        elif choice == f"{len(game.inventory) + 1}":
             return
 
         else:
@@ -118,14 +118,12 @@ def quit_game():
     quit()
 
 def render_inventory():
-    inventory = {str(key) : item for (key, item) in enumerate(game.inventory, start=1)}
     print("Backpack items:")
 
-    for key, item in inventory.items():
+    for key, item in game.inventory.items():
         print(f"{key}. {item.name}")
 
-    print(f"{len(inventory) + 1}. close bag")
-    return inventory
+    print(f"{len(game.inventory) + 1}. close bag")
 
 def render_event():
     event = game.current_event

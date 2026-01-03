@@ -13,7 +13,8 @@ class Event:
             game.flags.add(self.flag)
 
         if not self.visited:
-            game.inventory.extend(self.treasure)
+            for treasure in self.treasure:
+                game.inventory.update({str(len(game.inventory) + 1) : treasure})
             self.visited = True
 
     def add_next_event(self, next_event):
@@ -63,7 +64,7 @@ class Event:
 class Game:
     def __init__(self):
         self.flags = set()
-        self.inventory = []
+        self.inventory = {}
         self.events = {}
         self.current_event = None
 
